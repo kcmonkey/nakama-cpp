@@ -14,7 +14,6 @@ function(cpprest_find_websocketpp)
     message(FATAL_ERROR "-- websocketpp not found and embedded version not present; try `git submodule update --init` and run CMake again")
   endif()
 
-  cpprest_find_boost()
   cpprest_find_openssl()
 
   add_library(cpprestsdk_websocketpp_internal INTERFACE)
