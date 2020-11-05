@@ -68,6 +68,8 @@ endif()
 
 set(CMAKE_FOLDER third_party)
 
+add_subdirectory(${THIRD_PARTY_DIR}/boost-cmake)
+
 if(BUILD_GRPC_CLIENT)
     add_subdirectory(${THIRD_PARTY_DIR}/grpc)
 else()
@@ -84,6 +86,7 @@ if(USE_CPPREST)
     set(WERROR OFF CACHE BOOL "" FORCE)
     set(CPPREST_EXCLUDE_COMPRESSION ON CACHE BOOL "" FORCE)
     set(CPPREST_ABI_TAG "" CACHE STRING "" FORCE)
+
     add_subdirectory(${THIRD_PARTY_DIR}/cpprestsdk)
 endif()
 
