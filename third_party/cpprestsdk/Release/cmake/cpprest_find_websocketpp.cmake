@@ -20,7 +20,6 @@ function(cpprest_find_websocketpp)
   target_include_directories(cpprestsdk_websocketpp_internal INTERFACE "$<BUILD_INTERFACE:${WEBSOCKETPP_INCLUDE_DIR}>")
   target_link_libraries(cpprestsdk_websocketpp_internal
     INTERFACE
-      cpprestsdk_boost_internal
       cpprestsdk_openssl_internal
   )
 endfunction()

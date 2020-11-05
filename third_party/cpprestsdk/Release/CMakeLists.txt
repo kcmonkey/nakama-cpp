@@ -62,7 +62,6 @@ else()
   set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Link against boost statically.")
 endif()
 
-include(cmake/cpprest_find_boost.cmake)
 include(cmake/cpprest_find_zlib.cmake)
 include(cmake/cpprest_find_openssl.cmake)
 include(cmake/cpprest_find_websocketpp.cmake)
@@ -232,12 +231,5 @@ function(add_casablanca_test NAME SOURCES_VAR)
   endif()
 endfunction()
 
+add_subdirectory(libs/boost-cmake)
 add_subdirectory(src)
-
-if(BUILD_TESTS)
-  add_subdirectory(tests)
-endif()
-
-if(BUILD_SAMPLES)
-  add_subdirectory(samples)
-endif()

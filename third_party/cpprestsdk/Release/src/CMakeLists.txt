@@ -43,9 +43,15 @@ add_library(cpprest ${SOURCES})
 target_include_directories(cpprest
   PUBLIC
     $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+
   PRIVATE
     pch
 )
+
+target_link_libraries(cpprest PRIVATE Boost::system)
+target_link_libraries(cpprest PRIVATE Boost::boost)
+target_link_libraries(cpprest PRIVATE Boost::thread)
+target_link_libraries(cpprest PRIVATE Boost::chrono)
 
 ## Sub-components
 # Websockets component
@@ -247,6 +253,11 @@ if(CPPREST_INSTALL)
   set(CPPREST_USES_OPENSSL OFF)
 
   set(CPPREST_TARGETS cpprest)
+
+  list(APPEND CPPREST_TARGETS Boost_thread)
+  list(APPEND CPPREST_TARGETS Boost_system)
+  list(APPEND CPPREST_TARGETS Boost_chrono)
+
   if(TARGET cpprestsdk_zlib_internal)
     list(APPEND CPPREST_TARGETS cpprestsdk_zlib_internal)
     set(CPPREST_USES_ZLIB ON)

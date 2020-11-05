@@ -110,6 +110,7 @@ target_include_directories(nakama-cpp
     PRIVATE api
     PRIVATE .
     PRIVATE ${THIRD_PARTY_DIR}/grpc/third_party/protobuf/src
+
 )
 
 source_group(TREE ${PUBLIC_INCLUDE_DIR}       PREFIX include FILES ${_public_headers_list})

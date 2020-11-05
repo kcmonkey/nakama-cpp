@@ -84,7 +84,9 @@ if(USE_CPPREST)
     set(WERROR OFF CACHE BOOL "" FORCE)
     set(CPPREST_EXCLUDE_COMPRESSION ON CACHE BOOL "" FORCE)
     set(CPPREST_ABI_TAG "" CACHE STRING "" FORCE)
+
     add_subdirectory(${THIRD_PARTY_DIR}/cpprestsdk)
+    target_include_directories(nakama-cpp PRIVATE ${BOOST_SOURCE})
 endif()
 
 set(CMAKE_FOLDER)
