@@ -67,7 +67,6 @@ elseif(CPPREST_WEBSOCKETS_IMPL STREQUAL "wspp")
   )
   cpprest_find_websocketpp()
   target_link_libraries(cpprest PRIVATE cpprestsdk_websocketpp_internal)
-  cpprest_find_boost()
   cpprest_find_openssl()
   target_link_libraries(cpprest PUBLIC cpprestsdk_boost_internal cpprestsdk_openssl_internal)
 else()
@@ -126,7 +125,6 @@ endif()
 
 # Http client component
 if(CPPREST_HTTP_CLIENT_IMPL STREQUAL "asio")
-  cpprest_find_boost()
   cpprest_find_openssl()
   target_compile_definitions(cpprest PUBLIC -DCPPREST_FORCE_HTTP_CLIENT_ASIO)
   target_sources(cpprest PRIVATE http/client/http_client_asio.cpp http/client/x509_cert_utilities.cpp)
@@ -159,7 +157,6 @@ endif()
 
 # http listener component
 if(CPPREST_HTTP_LISTENER_IMPL STREQUAL "asio")
-  cpprest_find_boost()
   cpprest_find_openssl()
   target_compile_definitions(cpprest PUBLIC -DCPPREST_FORCE_HTTP_LISTENER_ASIO)
   target_sources(cpprest PRIVATE http/listener/http_server_asio.cpp)
