@@ -1,7 +1,7 @@
 [submodule "third_party/grpc"]
 	path = third_party/grpc
 	url = https://github.com/lugehorsam/grpc
-	branch = v1.19.x
+	commit = 1c4499a26f98aafc31c7a70998f2dcc8e454ca79
 [submodule "third_party/cpprestsdk/Release/libs/websocketpp"]
 	path = third_party/cpprestsdk/Release/libs/websocketpp
 	url = https://github.com/zaphoyd/websocketpp/
