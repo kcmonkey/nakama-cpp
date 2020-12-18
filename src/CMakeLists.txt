@@ -90,7 +90,6 @@ endif()
 
 if((BUILD_GRPC_CLIENT AND NAKAMA_SSL_ENABLED) OR BUILD_HTTP_CPPREST OR BUILD_WEBSOCKET_CPPREST)
     target_compile_definitions(nakama-cpp PRIVATE NAKAMA_SSL_ENABLED)
-    target_include_directories(nakama-cpp PRIVATE ${THIRD_PARTY_DIR}/grpc/third_party/boringssl/include)
     target_link_libraries(nakama-cpp PUBLIC ssl crypto)
 endif()
 
