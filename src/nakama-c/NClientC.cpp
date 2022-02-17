@@ -329,6 +329,27 @@ void NClient_authenticateSteam(
         Nakama::createErrorCallback(client, reqData, errorCallback));
 }
 
+void NClient_authenticateOculus(
+    NClient client,
+    const char* token,
+    const char* username,
+    bool create,
+    NStringMap vars,
+    NClientReqData reqData,
+    NSessionCallback successCallback, NClientErrorCallback errorCallback)
+{
+    Nakama::NClientInterface* cppClient = getCppClient(client);
+    Nakama::NStringMap* cppVars = Nakama::findNStringMap(vars);
+
+    cppClient->authenticateOculus(
+        token,
+        username ? username : "",
+        create,
+        cppVars ? *cppVars : Nakama::NStringMap(),
+        Nakama::createAuthSuccessCallback(client, reqData, successCallback),
+        Nakama::createErrorCallback(client, reqData, errorCallback));
+}
+
 void NClient_linkFacebook(NClient client, NSession session, const char* accessToken, bool importFriends, NClientReqData reqData, void (*successCallback)(NClient, NClientReqData), NClientErrorCallback errorCallback)
 {
     Nakama::NClientInterface* cppClient = getCppClient(client);

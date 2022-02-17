@@ -586,6 +586,18 @@ void GrpcClient::authenticateSteam(
     responseReader->Finish(&(*sessionData), &ctx->status, (void*)ctx);
 }
 
+void GrpcClient::authenticateOculus(
+    const std::string & token,
+    const std::string & username,
+    bool create,
+    const NStringMap& vars,
+    std::function<void(NSessionPtr)> successCallback,
+    ErrorCallback errorCallback
+)
+{
+    //TODO
+}
+
 void GrpcClient::linkFacebook(
     NSessionPtr session,
     const std::string & accessToken,

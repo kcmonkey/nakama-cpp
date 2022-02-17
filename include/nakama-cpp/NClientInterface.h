@@ -260,6 +260,23 @@ NAKAMA_NAMESPACE_BEGIN
         ) = 0;
 
         /**
+         * Authenticate a user with a Oculus auth token.
+         *
+         * @param token An authentication token from the Oculus network.
+         * @param username A username used to create the user.
+         * @param create True if the user should be created when authenticated.
+         * @param vars Extra information that will be bundled in the session token.
+         */
+        virtual void authenticateOculus(
+            const std::string& token,
+            const std::string& username = std::string(),
+            bool create = false,
+            const NStringMap& vars = {},
+            std::function<void(NSessionPtr)> successCallback = nullptr,
+            ErrorCallback errorCallback = nullptr
+        ) = 0;
+
+        /**
          * Link a Facebook profile to a user account.
          *
          * @param session The session of the user.

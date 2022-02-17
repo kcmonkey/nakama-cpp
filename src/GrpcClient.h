@@ -123,6 +123,15 @@ namespace Nakama {
             ErrorCallback errorCallback
         ) override;
 
+        void authenticateOculus(
+            const std::string& token,
+            const std::string& username,
+            bool create,
+            const NStringMap& vars,
+            std::function<void(NSessionPtr)> successCallback,
+            ErrorCallback errorCallback
+        ) override;
+
         void linkFacebook(
             NSessionPtr session,
             const std::string& accessToken,

@@ -267,6 +267,24 @@ extern "C" {
     );
 
     /**
+     * Authenticate a user with a Oculus auth token.
+     *
+     * @param token An authentication token from the Oculus network.
+     * @param username A username used to create the user.
+     * @param create True if the user should be created when authenticated.
+     */
+    NAKAMA_API void NClient_authenticateOculus(
+        NClient client,
+        const char* token,
+        const char* username,              // optional, pass NULL
+        bool create,
+        NStringMap vars,                   // optional, pass NULL
+        NClientReqData reqData,            // optional, pass NULL
+        NSessionCallback successCallback,  // optional, pass NULL
+        NClientErrorCallback errorCallback // optional, pass NULL
+    );
+
+    /**
      * Link a Facebook profile to a user account.
      *
      * @param session The session of the user.

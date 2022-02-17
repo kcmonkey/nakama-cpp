@@ -686,6 +686,53 @@ void RestClient::authenticateSteam(
     }
 }
 
+void RestClient::authenticateOculus(
+    const std::string & token,
+    const std::string & username,
+    bool create,
+    const NStringMap& vars,
+    std::function<void(NSessionPtr)> successCallback,
+    ErrorCallback errorCallback
+)
+{
+    try {
+        NLOG_INFO("...");
+
+        auto sessionData(make_shared<nakama::api::Session>());
+        RestReqContext* ctx = createReqContext(sessionData.get());
+        setBasicAuth(ctx);
+
+        if (successCallback)
+        {
+            ctx->successCallback = [sessionData, successCallback]()
+            {
+                NSessionPtr session(new DefaultSession(sessionData->token(), sessionData->created()));
+                successCallback(session);
+            };
+        }
+        ctx->errorCallback = errorCallback;
+
+        NHttpQueryArgs args;
+
+        args.emplace("username", username);
+        AddBoolArg(args, "create", create);
+
+        rapidjson::Document document;
+        document.SetObject();
+
+        document.AddMember("token", token, document.GetAllocator());
+        addVarsToJsonDoc(document, vars);
+
+        string body = jsonDocToStr(document);
+
+        sendReq(ctx, NHttpReqMethod::POST, "/v2/account/authenticate/oculus", std::move(body), std::move(args));
+    }
+    catch (exception& e)
+    {
+        NLOG_ERROR("exception: " + string(e.what()));
+    }
+}
+
 void RestClient::linkFacebook(
     NSessionPtr session,
     const std::string & accessToken,
